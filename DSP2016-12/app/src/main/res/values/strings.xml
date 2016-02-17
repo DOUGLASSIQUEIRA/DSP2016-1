@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">DSP2016-1</string>
+    <string name="app_name">Dispositivos Móveis 2016/1</string>
+    <string name="hello">Olá Mundo!</string>
 </resources>
