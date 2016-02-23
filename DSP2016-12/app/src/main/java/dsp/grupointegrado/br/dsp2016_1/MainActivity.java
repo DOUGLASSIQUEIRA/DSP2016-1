@@ -4,9 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
+
+    private EditText edtNumero1;
+    private EditText edtNumero2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,19 +20,30 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        edtNumero1 = (EditText) findViewById(R.id.edtNumero1);
+        edtNumero2 = (EditText) findViewById(R.id.edtNumero2);
+    }
 
+    public void btnSomar (View v) {
 
-        final Button btn = (Button) findViewById(R.id.btnAula1);
+        try {
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            double vl1 = Double.parseDouble(edtNumero1.getText().toString());
+            double vl2 = Double.parseDouble(edtNumero2.getText().toString());
+            double soma = vl1 + vl2;
 
-                Toast.makeText(getBaseContext(), "Oiiii " + btn.getText().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "A soma é " + soma, Toast.LENGTH_LONG).show();
 
-            }
-        });
+        } catch (NumberFormatException e) {
 
+            Toast.makeText(getBaseContext(), "Insira dados válidos", Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    public void btnSubtrair (View v) {
+        Toast.makeText(getBaseContext(), "Subtrair", Toast.LENGTH_LONG).show();
     }
 
 }
