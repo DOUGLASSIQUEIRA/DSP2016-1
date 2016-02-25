@@ -1,9 +1,11 @@
 package dsp.grupointegrado.br.dsp2016_1;
 
+import java.io.Serializable;
+
 /**
  * Created by bhpachulski on 2/24/2016.
  */
-public class Produto {
+public class Produto implements Serializable {
 
     private int cod;
     private String nome;

@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
     public void btnDividir (View v) {
         Intent i = new Intent(this, ListaActivity.class);
 
+        Produto p = new Produto();
+        p.setNome("Teste de intent");
+
+        i.putExtra("produto", p);
+
         this.startActivity(i);
     }
 
