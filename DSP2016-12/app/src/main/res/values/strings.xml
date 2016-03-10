@@ -2,4 +2,12 @@
     <string name="app_name">Dispositivos Móveis 2016/1</string>
     <string name="hello">Olá Mundo!</string>
     <string name="title_activity_lista">ListaActivity</string>
+    <string name="title_activity_cad_produto">CadProdutoActivity</string>
+
+    <string name="lbId">Código</string>
+    <string name="lbNome">Nome</string>
+    <string name="lbValor">Valor</string>
+
+    <string name="btnSalvar">Salvar</string>
+
 </resources>

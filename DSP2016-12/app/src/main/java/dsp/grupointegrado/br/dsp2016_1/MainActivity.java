@@ -7,14 +7,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
 
     private EditText edtNumero1;
     private EditText edtNumero2;
 
-    private Conexao conn;
+    private DAO conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         edtNumero1 = (EditText) findViewById(R.id.edtNumero1);
         edtNumero2 = (EditText) findViewById(R.id.edtNumero2);
 
-        conn = new Conexao(this);
+        conn = new DAO(this);
     }
 
     public void btnSomar (View v) {
