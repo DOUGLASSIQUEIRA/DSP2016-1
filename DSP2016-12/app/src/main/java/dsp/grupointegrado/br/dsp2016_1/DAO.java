@@ -2,12 +2,13 @@ package dsp.grupointegrado.br.dsp2016_1;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import org.apache.commons.lang3.reflect.FieldUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,18 +21,20 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
 
     private Class<T> tipo;
 
-    public DAO(Context context) {
+    public DAO(Context context, Class<T> tipo) {
         super(context, NAME, null, VERSION);
+        this.tipo = tipo;
     }
 
-    public void salvar (T objeto) {
+    public void salvar (T objeto) throws IllegalAccessException {
 
         ContentValues cv = new ContentValues();
-        for (Field f : tipo.getFields()) {
-//            cv.put(f.getName(), f.get);
+        for (Field f : FieldUtils.getAllFieldsList(getTipo())) {
+            if (!f.isAnnotationPresent(Id.class))
+                cv.put(f.getName(), String.valueOf(FieldUtils.readField(f, objeto, true)));
         }
 
-        getWritableDatabase().insert(tipo.getName(), null, cv);
+        getWritableDatabase().insert(tipo.getSimpleName(), null, cv);
     }
 
     public abstract void alterar ();
@@ -51,4 +54,8 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {}
 
+
+    public Class<T> getTipo() {
+        return this.tipo;
+    }
 }

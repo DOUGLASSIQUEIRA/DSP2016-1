@@ -11,7 +11,7 @@ public class ProdutoDAO extends DAO<Produto> {
 
 
     public ProdutoDAO(Context context) {
-        super(context);
+        super(context, Produto.class);
     }
 
     @Override

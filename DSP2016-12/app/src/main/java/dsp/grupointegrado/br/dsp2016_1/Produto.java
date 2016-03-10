@@ -7,7 +7,9 @@ import java.io.Serializable;
  */
 public class Produto implements Serializable {
 
+    @Id
     private int cod;
+
     private String nome;
     private double valor;
 

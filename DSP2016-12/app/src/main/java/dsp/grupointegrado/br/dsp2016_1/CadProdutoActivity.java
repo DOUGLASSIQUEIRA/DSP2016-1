@@ -12,7 +12,7 @@ public class CadProdutoActivity extends AppCompatActivity {
     private EditText edtNome;
     private EditText edtValor;
 
-//    private ConexaoDAO conn;
+    private ProdutoDAO produtoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class CadProdutoActivity extends AppCompatActivity {
 
         edtId.setEnabled(false);
 
-//        conn = new ConexaoDAO(this);
+        produtoDAO = new ProdutoDAO(this);
     }
 
     public void btnSalvarClick (View v) {
@@ -33,7 +33,11 @@ public class CadProdutoActivity extends AppCompatActivity {
         p.setNome(edtNome.getText().toString());
         p.setValor(Double.parseDouble(edtValor.getText().toString()));
 
-//        conn.salvaProduto(p);
+        try {
+            produtoDAO.salvar(p);
+        } catch (IllegalAccessException e) {
+            Toast.makeText(this, "Erro ao Salvar Produto! =D", Toast.LENGTH_LONG).show();
+        }
 
         Toast.makeText(this, "Produto salvo com sucesso! =D", Toast.LENGTH_LONG).show();
     }

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         edtNumero1 = (EditText) findViewById(R.id.edtNumero1);
         edtNumero2 = (EditText) findViewById(R.id.edtNumero2);
 
-        conn = new DAO(this);
+//        conn = new DAO(this);
     }
 
     public void btnSomar (View v) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         p.setNome("Teste ");
         p.setValor(50.0);
 
-        conn.salvaProduto(p);
+//        conn.salvaProduto(p);
 
         Toast.makeText(getBaseContext(),
                 "Produto criado", Toast.LENGTH_LONG).show();
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnSubtrair (View v) {
 
-        Toast.makeText(getBaseContext(),
-                conn.getProdutos().toString(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(),
+//                conn.getProdutos().toString(), Toast.LENGTH_LONG).show();
     }
 
     public void btnDividir (View v) {
