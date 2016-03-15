@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class DAO<T> extends SQLiteOpenHelper {
 
     private static final String NAME = "MEU_BANQUINHUXUZINHUXU";
-    private static final int VERSION = 1;
+    private static final int VERSION = 3;
 
     private Class<T> tipo;
 
@@ -35,24 +35,69 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
         }
 
         getWritableDatabase().insert(tipo.getSimpleName(), null, cv);
+
     }
 
-    public abstract void alterar ();
+    public void alterar (T objeto) throws IllegalAccessException {
 
-    public abstract void deletar ();
+        ContentValues cv = new ContentValues();
+        for (Field f : FieldUtils.getAllFieldsList(getTipo())) {
+
+            if (!f.isAnnotationPresent(Id.class))
+                cv.put(f.getName(), String.valueOf(FieldUtils.readField(f, objeto, true)));
+
+        }
+
+        StringBuilder clausulaWhere = new StringBuilder();
+        String[] valorWhere = new String[]{};
+        for (Field f : FieldUtils.getAllFieldsList(getTipo())) {
+
+            if (f.isAnnotationPresent(Id.class)) {
+                clausulaWhere.append(f.getName()).append("=?");
+                valorWhere = new String[]{String.valueOf(FieldUtils.readField(f, objeto, true))};
+            }
+
+        }
+
+        getWritableDatabase().update(getTipo().getSimpleName(), cv,
+                clausulaWhere.toString(), valorWhere);
+
+    }
+
+    public void deletar (T objeto) throws IllegalAccessException{
+
+        StringBuilder clausulaWhere = new StringBuilder();
+        String[] valorWhere = new String[]{};
+        for (Field f : FieldUtils.getAllFieldsList(getTipo())) {
+
+            if (f.isAnnotationPresent(Id.class)) {
+                clausulaWhere.append(f.getName()).append("=?");
+                valorWhere = new String[]{String.valueOf(FieldUtils.readField(f, objeto, true))};
+            }
+
+        }
+
+        getWritableDatabase().delete(getTipo().getSimpleName(), clausulaWhere.toString(),
+                valorWhere);
+
+    }
 
     public abstract List<T> listar ();
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String SQL = "CREATE TABLE Produto (cod INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, valor REAL)";
+        String SQL_PRODUTO = "CREATE TABLE Produto (cod INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, valor REAL)";
 
-        sqLiteDatabase.execSQL(SQL);
+        sqLiteDatabase.execSQL(SQL_PRODUTO);
+
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        String SQL_TIPOPRODUTO = "CREATE TABLE TipoProduto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, descricao TEXT)";
+        sqLiteDatabase.execSQL(SQL_TIPOPRODUTO);
+    }
 
 
     public Class<T> getTipo() {
