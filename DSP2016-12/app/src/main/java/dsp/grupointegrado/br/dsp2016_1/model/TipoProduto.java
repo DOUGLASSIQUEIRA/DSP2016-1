@@ -1,6 +1,8 @@
-package dsp.grupointegrado.br.dsp2016_1;
+package dsp.grupointegrado.br.dsp2016_1.model;
 
 import java.io.Serializable;
+
+import dsp.grupointegrado.br.dsp2016_1.dao.Id;
 
 /**
  * Created by bhpachulski on 3/14/2016.

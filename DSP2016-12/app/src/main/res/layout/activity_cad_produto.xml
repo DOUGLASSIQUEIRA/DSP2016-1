@@ -57,4 +57,13 @@
         android:layout_marginTop="15dp"
         android:onClick="btnSalvarClick"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnListar"
+        android:id="@+id/btnListar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:onClick="btnListarClick"/>
+
 </LinearLayout>

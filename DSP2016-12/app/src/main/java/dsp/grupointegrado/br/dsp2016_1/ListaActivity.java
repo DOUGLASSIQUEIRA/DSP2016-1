@@ -1,25 +1,49 @@
 package dsp.grupointegrado.br.dsp2016_1;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class ListaActivity extends AppCompatActivity {
+import java.util.List;
+
+import dsp.grupointegrado.br.dsp2016_1.dao.ProdutoDAO;
+import dsp.grupointegrado.br.dsp2016_1.model.Produto;
+
+public class ListaActivity extends Activity {
+
+    private ProdutoDAO produtoDAO;
+
+    private ListView lvProdutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
+        lvProdutos = (ListView) findViewById(R.id.lvProdutos);
 
-        Produto p = (Produto) getIntent().getExtras().get("produto");
+        produtoDAO = new ProdutoDAO(this);
+        final List<Produto> produtoList = produtoDAO.listar();
 
-        Toast.makeText(this, p.getNome(), Toast.LENGTH_LONG).show();
+        ArrayAdapter<Produto> adapterProdutos = new ArrayAdapter<Produto>(this,
+                android.R.layout.simple_list_item_1, produtoList);
 
+        lvProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Toast.makeText(view.getContext(), "Produto: " + produtoList.get(i).getNome(), Toast.LENGTH_LONG).show();
+
+                return false;
+            }
+        });
+
+        lvProdutos.setAdapter(adapterProdutos);
     }
-
 }

@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import dsp.grupointegrado.br.dsp2016_1.dao.DAO;
+import dsp.grupointegrado.br.dsp2016_1.model.Produto;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText edtNumero1;

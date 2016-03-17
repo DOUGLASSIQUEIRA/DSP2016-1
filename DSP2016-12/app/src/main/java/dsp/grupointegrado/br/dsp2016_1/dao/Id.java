@@ -1,4 +1,4 @@
-package dsp.grupointegrado.br.dsp2016_1;
+package dsp.grupointegrado.br.dsp2016_1.dao;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

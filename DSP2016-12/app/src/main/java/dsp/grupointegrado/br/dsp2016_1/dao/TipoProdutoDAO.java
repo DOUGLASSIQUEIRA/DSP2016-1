@@ -1,10 +1,12 @@
-package dsp.grupointegrado.br.dsp2016_1;
+package dsp.grupointegrado.br.dsp2016_1.dao;
 
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dsp.grupointegrado.br.dsp2016_1.model.TipoProduto;
 
 /**
  * Created by bhpachulski on 3/14/2016.

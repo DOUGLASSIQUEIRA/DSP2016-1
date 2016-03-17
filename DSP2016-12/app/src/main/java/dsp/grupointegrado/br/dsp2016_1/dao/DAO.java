@@ -1,15 +1,18 @@
-package dsp.grupointegrado.br.dsp2016_1;
+package dsp.grupointegrado.br.dsp2016_1.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
+import com.google.common.reflect.ClassPath;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Set;
+
+import dsp.grupointegrado.br.dsp2016_1.model.Produto;
 
 /**
  * Created by bhpachulski on 2/24/2016.
@@ -86,11 +89,9 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
         String SQL_PRODUTO = "CREATE TABLE Produto (cod INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, valor REAL)";
 
         sqLiteDatabase.execSQL(SQL_PRODUTO);
-
     }
 
     @Override
@@ -99,6 +100,14 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_TIPOPRODUTO);
     }
 
+//    public String getCreateTable () throws IOException {
+//        ClassPath classpath = ClassPath.from(Thread.currentThread().getContextClassLoader());
+//
+//        for (ClassPath.ClassInfo classInfo : classpath.getTopLevelClasses("dsp.grupointegrado.br.dsp2016_1.model")) {
+//
+//        }
+//        return classpath.getTopLevelClasses("dsp.grupointegrado.br.dsp2016_1.model").toString();
+//    }
 
     public Class<T> getTipo() {
         return this.tipo;

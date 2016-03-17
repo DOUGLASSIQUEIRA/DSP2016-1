@@ -9,5 +9,6 @@
     <string name="lbValor">Valor</string>
 
     <string name="btnSalvar">Salvar</string>
+    <string name="btnListar">Listar</string>
 
 </resources>
