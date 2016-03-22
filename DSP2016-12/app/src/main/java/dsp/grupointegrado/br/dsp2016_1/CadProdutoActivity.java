@@ -20,6 +20,8 @@ public class CadProdutoActivity extends AppCompatActivity {
     private EditText edtValor;
 
     private ProdutoDAO produtoDAO;
+    private Produto produto;
+    private boolean insert = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,36 @@ public class CadProdutoActivity extends AppCompatActivity {
 
         edtId.setEnabled(false);
 
+        try {
+            produto = (Produto) getIntent().getSerializableExtra("produto");
+            setProduto(produto);
+            insert = false;
+        } catch (NullPointerException e) {
+            Log.e("MSG", "Não veio Produto.");
+        }
+
         produtoDAO = new ProdutoDAO(this);
+    }
+
+    public void setProduto (Produto p) {
+        edtId.setText(String.valueOf(p.getCod()));
+
+        edtNome.setText(p.getNome());
+        edtValor.setText(String.valueOf(p.getValor()));
     }
 
     public void btnSalvarClick (View v) {
         try {
-            produtoDAO.salvar(this.getProduto());
+
+            Produto p = this.getProduto();
+
+            if (insert)
+                produtoDAO.salvar(p);
+            else {
+                produtoDAO.alterar(p);
+            }
+
+            this.finish();
         } catch (IllegalAccessException e) {
             Toast.makeText(this, "Erro ao Salvar Produto! =D", Toast.LENGTH_LONG).show();
         }
@@ -52,6 +78,11 @@ public class CadProdutoActivity extends AppCompatActivity {
 
     public Produto getProduto () {
         Produto p = new Produto();
+
+        try {
+            p.setCod(Integer.parseInt(edtId.getText().toString()));
+        } catch (Exception e) {}
+
         p.setNome(edtNome.getText().toString());
         p.setValor(Double.parseDouble(edtValor.getText().toString()));
 

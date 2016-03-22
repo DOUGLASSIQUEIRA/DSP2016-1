@@ -4,15 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.google.common.reflect.ClassPath;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Set;
-
-import dsp.grupointegrado.br.dsp2016_1.model.Produto;
 
 /**
  * Created by bhpachulski on 2/24/2016.

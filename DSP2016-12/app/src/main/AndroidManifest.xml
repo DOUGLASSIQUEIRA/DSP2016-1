@@ -13,18 +13,19 @@
 
         <activity
             android:name=".ListaActivity"
-            android:label="@string/title_activity_lista"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".CadProdutoActivity"
-            android:label="@string/title_activity_cad_produto"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/title_activity_lista">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".CadProdutoActivity"
+            android:label="@string/title_activity_cad_produto"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
     </application>
