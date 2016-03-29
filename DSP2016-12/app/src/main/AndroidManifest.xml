@@ -24,9 +24,7 @@
 
         <activity
             android:name=".CadProdutoActivity"
-            android:label="@string/title_activity_cad_produto"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:label="@string/title_activity_cad_produto"/>
 
     </application>
 

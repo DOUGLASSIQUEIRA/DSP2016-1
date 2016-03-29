@@ -4,9 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.List;
 
 import dsp.grupointegrado.br.dsp2016_1.dao.ProdutoDAO;
 import dsp.grupointegrado.br.dsp2016_1.dao.TipoProdutoDAO;
@@ -19,8 +25,12 @@ public class CadProdutoActivity extends AppCompatActivity {
     private EditText edtNome;
     private EditText edtValor;
 
+    private Spinner spnTipoProduto;
+
     private ProdutoDAO produtoDAO;
     private Produto produto;
+    private TipoProdutoDAO tpProdutoDao;
+
     private boolean insert = true;
 
     @Override
@@ -28,9 +38,20 @@ public class CadProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_produto);
 
+        produtoDAO = new ProdutoDAO(this);
+        tpProdutoDao = new TipoProdutoDAO(this);
+
         edtId = (EditText) findViewById(R.id.edtId);
         edtNome = (EditText) findViewById(R.id.edtNome);
         edtValor = (EditText) findViewById(R.id.edtValor);
+
+        List<TipoProduto> tiposProduto = tpProdutoDao.listar();
+
+        ArrayAdapter<TipoProduto> adapterTpProduto =
+                new ArrayAdapter<TipoProduto>(this, android.R.layout.simple_dropdown_item_1line, tiposProduto);
+
+        spnTipoProduto = (Spinner) findViewById(R.id.spnTipoProduto);
+        spnTipoProduto.setAdapter(adapterTpProduto);
 
         edtId.setEnabled(false);
 
@@ -41,8 +62,6 @@ public class CadProdutoActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             Log.e("MSG", "Não veio Produto.");
         }
-
-        produtoDAO = new ProdutoDAO(this);
     }
 
     public void setProduto (Produto p) {
@@ -52,7 +71,7 @@ public class CadProdutoActivity extends AppCompatActivity {
         edtValor.setText(String.valueOf(p.getValor()));
     }
 
-    public void btnSalvarClick (View v) {
+    public void btnSalvarClick () {
         try {
 
             Produto p = this.getProduto();
@@ -71,7 +90,7 @@ public class CadProdutoActivity extends AppCompatActivity {
         Toast.makeText(this, "Produto salvo com sucesso! =D", Toast.LENGTH_LONG).show();
     }
 
-    public void btnListarClick (View v) {
+    public void btnListarClick () {
         Intent i = new Intent(this, ListaActivity.class);
         startActivity(i);
     }
@@ -89,4 +108,27 @@ public class CadProdutoActivity extends AppCompatActivity {
         return p;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cadastro, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.mnSalvar:
+                    this.btnSalvarClick();
+                break;
+
+            case R.id.mnListar:
+                    this.btnListarClick();
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

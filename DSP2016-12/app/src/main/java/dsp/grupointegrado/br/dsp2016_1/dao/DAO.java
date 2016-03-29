@@ -28,7 +28,7 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
 
         ContentValues cv = new ContentValues();
         for (Field f : FieldUtils.getAllFieldsList(getTipo())) {
-            if (!f.isAnnotationPresent(Id.class))
+            if (!f.isAnnotationPresent(Id.class) && !f.getName().startsWith("shadow$"))
                 cv.put(f.getName(), String.valueOf(FieldUtils.readField(f, objeto, true)));
         }
 
@@ -41,7 +41,7 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         for (Field f : FieldUtils.getAllFieldsList(getTipo())) {
 
-            if (!f.isAnnotationPresent(Id.class))
+            if (!f.isAnnotationPresent(Id.class) && !f.getName().startsWith("shadow$"))
                 cv.put(f.getName(), String.valueOf(FieldUtils.readField(f, objeto, true)));
 
         }
@@ -85,14 +85,15 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String SQL_PRODUTO = "CREATE TABLE Produto (cod INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, valor REAL)";
-
         sqLiteDatabase.execSQL(SQL_PRODUTO);
+
+        String SQL_TIPOPRODUTO = "CREATE TABLE TipoProduto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, descricao TEXT)";
+        sqLiteDatabase.execSQL(SQL_TIPOPRODUTO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        String SQL_TIPOPRODUTO = "CREATE TABLE TipoProduto (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, descricao TEXT)";
-        sqLiteDatabase.execSQL(SQL_TIPOPRODUTO);
+
     }
 
 //    public String getCreateTable () throws IOException {

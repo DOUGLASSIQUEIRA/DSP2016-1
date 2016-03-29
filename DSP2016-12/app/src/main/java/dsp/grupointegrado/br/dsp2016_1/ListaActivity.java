@@ -1,6 +1,5 @@
 package dsp.grupointegrado.br.dsp2016_1;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -57,7 +55,7 @@ public class ListaActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cadastro, menu);
+        getMenuInflater().inflate(R.menu.menugeral, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -68,6 +66,10 @@ public class ListaActivity extends AppCompatActivity {
 
             case R.id.mnCadastro:
                 startActivity(new Intent(this, CadProdutoActivity.class));
+            break;
+
+            case R.id.mnCadastroTpProduto:
+
             break;
 
         }

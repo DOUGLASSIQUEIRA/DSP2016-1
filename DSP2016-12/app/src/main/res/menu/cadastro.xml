@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Cadastro" android:id="@+id/mnCadastro">
-        Cadastro
-    </item>
+    <item android:title="Salvar" android:id="@+id/mnSalvar">Salvar</item>
+    <item android:title="Listar" android:id="@+id/mnListar">Listar</item>
 
 </menu>

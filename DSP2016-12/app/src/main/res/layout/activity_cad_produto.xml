@@ -48,22 +48,16 @@
         android:id="@+id/edtValor"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnSalvar"
-        android:id="@+id/btnSalvar"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:onClick="btnSalvarClick"/>
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnListar"
-        android:id="@+id/btnListar"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:onClick="btnListarClick"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tipo de Produto" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnTipoProduto" />
 
 </LinearLayout>
