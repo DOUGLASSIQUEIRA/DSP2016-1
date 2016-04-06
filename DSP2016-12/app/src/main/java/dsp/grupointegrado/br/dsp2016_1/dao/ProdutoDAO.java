@@ -6,6 +6,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+import dsp.grupointegrado.br.dsp2016_1.model.Combustivel;
 import dsp.grupointegrado.br.dsp2016_1.model.Produto;
 
 /**
@@ -29,6 +30,10 @@ public class ProdutoDAO extends DAO<Produto> {
             p.setCod(c.getInt(0));
             p.setNome(c.getString(1));
             p.setValor(c.getDouble(2));
+
+            p.setCombustivel(
+                        Combustivel.getCombustiveis().get(c.getInt(3))
+            );
 
             produtos.add(p);
         }

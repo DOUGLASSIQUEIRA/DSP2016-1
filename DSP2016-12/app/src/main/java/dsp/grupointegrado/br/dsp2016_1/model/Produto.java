@@ -15,6 +15,8 @@ public class Produto implements Serializable {
     private String nome;
     private double valor;
 
+    private Combustivel combustivel;
+
 
     public int getCod() {
         return cod;
@@ -38,6 +40,14 @@ public class Produto implements Serializable {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public Combustivel getCombustivel() {
+        return combustivel;
+    }
+
+    public void setCombustivel(Combustivel combustivel) {
+        this.combustivel = combustivel;
     }
 
     @Override

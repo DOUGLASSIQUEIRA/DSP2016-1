@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import dsp.grupointegrado.br.dsp2016_1.dao.DAO;
+import dsp.grupointegrado.br.dsp2016_1.model.Combustivel;
 import dsp.grupointegrado.br.dsp2016_1.model.Produto;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Produto p = new Produto();
         p.setNome("Teste ");
         p.setValor(50.0);
+        p.setCombustivel(Combustivel.DIESEL);
 
 //        conn.salvaProduto(p);
 
@@ -73,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         p.setNome("Teste de intent");
 
         i.putExtra("produto", p);
+
+
 
         this.startActivity(i);
     }

@@ -62,7 +62,8 @@ public class CadProdutoActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             Log.e("MSG", "Não veio Produto.");
         }
-    }
+
+   }
 
     public void setProduto (Produto p) {
         edtId.setText(String.valueOf(p.getCod()));
