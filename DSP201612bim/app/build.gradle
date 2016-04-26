@@ -21,6 +21,15 @@ android {
         jcenter()
         mavenCentral()
         mavenLocal()
+
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
+    }
+
+    packagingOptions {
+        pickFirst  'META-INF/license.txt'
+        pickFirst  'META-INF/notice.txt'
     }
 }
 
@@ -32,6 +41,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
+
+    compile "org.androidannotations:rest-spring-api:$AAVersion"
+    apt "org.androidannotations:rest-spring:$AAVersion"
+
+    compile "org.springframework.android:spring-android-rest-template:1.0.1.RELEASE"
+//    compile "com.fasterxml.jackson.core:jackson-core:2.7.3"
+//    compile "com.fasterxml.jackson.core:jackson-annotations:2.7.3"
+
 
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
