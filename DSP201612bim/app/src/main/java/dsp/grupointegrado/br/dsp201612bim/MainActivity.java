@@ -35,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
     public void ws () {
 
         AlunoService alunoService = new AlunoService_(this);
-        String test = alunoService.teste();
+        List<Aluno> aluno = alunoService.list();
 
-        Log.d("TEST", test);
+        Log.d("TEST", aluno.toString());
 
         //Toast.makeText(this, test, Toast.LENGTH_LONG).show();
-
     }
 
     @Background

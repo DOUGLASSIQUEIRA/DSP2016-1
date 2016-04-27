@@ -31,12 +31,11 @@ public class AlunoService {
         return nomes;
     }
     
-    @Path("test/{var}")
+    @Path("test")
     @GET 
     @Produces(MediaType.APPLICATION_JSON + ApplicationConfig.CHARSET)
-    public String test(@PathParam("var") String var, @PathParam("var2") String var2)  {
-
-        return "Olá Mundo" + var + var2;
+    public String test()  {
+        return "Olá Mundo";
     }
     
     @Path("testObjeto") 
