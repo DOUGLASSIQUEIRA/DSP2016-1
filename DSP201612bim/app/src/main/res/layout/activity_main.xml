@@ -18,8 +18,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
-        android:id="@+id/btnTest" />
+        android:text="GET"
+        android:id="@+id/btnGet" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET"
+        android:id="@+id/btnSet" />
 
 
 </LinearLayout>

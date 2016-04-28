@@ -12,11 +12,13 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Date;
 import java.util.List;
 
 import dsp.grupointegrado.br.dsp201612bim.model.Aluno;
-import dsp.grupointegrado.br.dsp201612bim.service.AlunoService;
-import dsp.grupointegrado.br.dsp201612bim.service.AlunoService_;
+import dsp.grupointegrado.br.dsp201612bim.model.Cliente;
+import dsp.grupointegrado.br.dsp201612bim.service.ClienteService;
+import dsp.grupointegrado.br.dsp201612bim.service.ClienteService_;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
@@ -32,22 +34,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Background
-    public void ws () {
+    public void getClientes () {
+        ClienteService cs = new ClienteService_(this);
+        List<Cliente> clientes = cs.getClientes();
 
-        AlunoService alunoService = new AlunoService_(this);
-        List<Aluno> aluno = alunoService.list();
-
-        Log.d("TEST", aluno.toString());
-
-        //Toast.makeText(this, test, Toast.LENGTH_LONG).show();
+        Log.d("TEST", clientes.toString());
     }
 
     @Background
-    @Click(R.id.btnTest)
-    public void testWS () {
+    @Click(R.id.btnGet)
+    public void getClientesClick () {
+        getClientes();
+    }
 
-        ws();
+    @Background
+    public void setClientes () {
+        ClienteService cs = new ClienteService_(this);
 
+        Cliente c = new Cliente();
+        c.setId(999);
+        c.setNome(new Date().toString());
+
+        cs.setCliente(c);
+    }
+
+    @Background
+    @Click(R.id.btnSet)
+    public void setClientesClick () {
+        setClientes();
     }
 
 }
