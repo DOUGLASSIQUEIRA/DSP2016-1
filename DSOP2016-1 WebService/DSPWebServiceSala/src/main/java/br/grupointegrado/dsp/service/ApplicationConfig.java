@@ -15,16 +15,14 @@ public class ApplicationConfig extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
+        
+        resources.add(br.grupointegrado.dsp.service.ClienteService.class);
+        
         try {
-            addRestResourceClasses(resources);            
+            resources.add(Class.forName("org.glassfish.jersey.jackson.JacksonFeature"));
         } catch (ClassNotFoundException ex) {}
         
         return resources;
-    }
-
-    private void addRestResourceClasses(Set<Class<?>> resources) throws ClassNotFoundException {
-        resources.add(br.grupointegrado.dsp.service.ClienteService.class);
-        resources.add(Class.forName("org.glassfish.jersey.jackson.JacksonFeature"));
     }
     
 }
