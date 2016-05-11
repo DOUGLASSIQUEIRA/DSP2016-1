@@ -15,6 +15,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
+import dsp.grupointegrado.br.dsp201612bim.arrayadapter.ClienteArrayAdapter;
 import dsp.grupointegrado.br.dsp201612bim.model.Cliente;
 import dsp.grupointegrado.br.dsp201612bim.service.ClienteService;
 import dsp.grupointegrado.br.dsp201612bim.service.ClienteService_;
@@ -36,9 +37,8 @@ public class ListClienteActivity extends AppCompatActivity {
 
     @UiThread
     public void init (List<Cliente> clientes) {
-        ArrayAdapter<Cliente> aaClientes =
-                new ArrayAdapter<Cliente>(this,
-                        android.R.layout.simple_list_item_1, clientes);
+        ClienteArrayAdapter aaClientes =
+                new ClienteArrayAdapter(this, clientes);
 
         lvClientes.setAdapter(aaClientes);
     }

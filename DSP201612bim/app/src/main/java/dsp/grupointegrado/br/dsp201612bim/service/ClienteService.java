@@ -15,7 +15,7 @@ import dsp.grupointegrado.br.dsp201612bim.model.Cliente;
 /**
  * Created by bhpachulski on 4/27/2016.
  */
-@Rest(rootUrl = "http://10.2.2.35:8080/DSPWebServiceSala/service/cliente", converters = {MappingJackson2HttpMessageConverter.class})
+@Rest(rootUrl = "http://10.2.2.81:8080/DSPWebServiceSala/service/cliente", converters = {MappingJackson2HttpMessageConverter.class})
 @Accept(MediaType.APPLICATION_JSON)
 public interface ClienteService {
 
