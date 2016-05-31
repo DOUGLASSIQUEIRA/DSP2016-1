@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     @AfterViews
     public void inicio () {
-        //afetrViews funciona como o onCreate
+        //afterViews funciona como o onCreate
     }
 
     public Cliente getCliente () {

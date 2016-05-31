@@ -13,7 +13,6 @@ import java.util.List;
 public class EstadoDAO extends DAO {
 
     private static String TB_NOME = "Estado";
-    private static String[] FIELDS = new String[]{"cod", "nome"};
 
     public EstadoDAO(Context context) {
         super(context);
@@ -21,7 +20,6 @@ public class EstadoDAO extends DAO {
 
     public void add (Estado estado) {
         ContentValues cv = new ContentValues();
-        cv.put("cod", estado.getCod());
         cv.put("nome", estado.getNome());
 
         super.getWritableDatabase().insert(TB_NOME, null, cv);
@@ -43,15 +41,16 @@ public class EstadoDAO extends DAO {
 
     public List<Estado> list () {
         List<Estado> estados = new ArrayList<>();
-        Cursor c = super.getWritableDatabase().rawQuery("SELECT * FROM Estado", FIELDS);
+        Cursor c = super.getReadableDatabase().rawQuery("SELECT * FROM Estado", null);
 
         while (c.moveToNext()) {
             Estado e = new Estado();
-            e.setCod(c.getInt(0));
-            e.setNome(c.getString(1));
+            e.setCod(c.getInt(c.getColumnIndex("cod")));
+            e.setNome(c.getString(c.getColumnIndex("nome")));
 
             estados.add(e);
         }
+        c.close();
 
         return estados;
     }

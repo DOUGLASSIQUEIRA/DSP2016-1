@@ -1,9 +1,11 @@
 package dsp.grupointegrado.br.aawbd;
 
+import java.io.Serializable;
+
 /**
  * Created by bhpachulski on 5/25/2016.
  */
-public class Estado {
+public class Estado implements Serializable {
 
     private int cod;
     private String nome;
@@ -22,5 +24,10 @@ public class Estado {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return this.getNome();
     }
 }
