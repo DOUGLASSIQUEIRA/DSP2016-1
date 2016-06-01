@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.MenuRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -72,17 +73,14 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(new Intent(this, ListEstadoActivity_.class), LIST_REQUEST);
     }
 
-    @OptionsItem(R.id.mnDel)
-    public void del () {
-        Estado e = getEstado();
-        estadoDAO.delete(e);
-        limpar();
-    }
-
     @OnActivityResult(LIST_REQUEST)
     public void listResult (int resultCode, Intent data, @OnActivityResult.Extra String value) {
-        Estado e = (Estado) data.getExtras().getSerializable("estado");
-        setEstado(e);
+        try {
+            Estado e = (Estado) data.getExtras().getSerializable("estado");
+            setEstado(e);
+        } catch (NullPointerException ex) {
+            Log.e("MSG", "Não voltou estado.");
+        }
     }
 
 }

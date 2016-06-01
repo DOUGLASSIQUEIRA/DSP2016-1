@@ -3,6 +3,4 @@
 
     <item android:id="@+id/mnSalvar" android:title="Salvar">Salvar</item>
     <item android:id="@+id/mnListar" android:title="Listar">Listar</item>
-    <item android:id="@+id/mnDel" android:title="Deletar">Deletar</item>
-
 </menu>
